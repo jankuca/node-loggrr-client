@@ -101,7 +101,9 @@ Client.prototype._request = function (method, path, params, data, callback) {
 			if (!success) {
 				err = new Error(data.error);
 			}
-			callback(err, data || null);
+			if (typeof callback === 'function') {
+				callback(err, data || null);
+			}
 		});
 	});
 	if (Object.keys(data).length !== 0) {
